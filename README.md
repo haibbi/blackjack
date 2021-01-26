@@ -6,7 +6,7 @@ Simple Blackjack/21 implementation in Java.
 
 ## Requirements
 
-- JDK 15
+- JDK 11
 
 ## Build and run
 
