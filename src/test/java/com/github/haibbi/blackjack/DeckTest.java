@@ -7,13 +7,13 @@ import java.util.stream.IntStream;
 
 class DeckTest {
 
-    @Test
-    void deckMustThrowOutOfCardWhenNoCardsLeft() {
-        Deck deck = new Deck();
+	@Test
+	void deckMustThrowOutOfCardWhenNoCardsLeft() {
+		Deck deck = new Deck();
 
-        IntStream.range(0, 52).forEach(i -> deck.draw());
+		IntStream.range(0, 52).forEach(i -> deck.draw());
 
-        Assertions.assertThrows(OutOfCardException.class, deck::draw);
-    }
+		Assertions.assertThrows(OutOfCardException.class, deck::draw);
+	}
 
 }

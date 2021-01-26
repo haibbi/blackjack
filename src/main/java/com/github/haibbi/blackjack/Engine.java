@@ -4,69 +4,69 @@ import java.util.Scanner;
 
 public class Engine {
 
-    private final Game game;
+	private final Game game;
 
-    public Engine() {
-        Deck deck = new Deck();
-        game = new Game(deck);
-        game.displayGameState();
-    }
+	public Engine() {
+		Deck deck = new Deck();
+		game = new Game(deck);
+		game.displayGameState();
+	}
 
-    void play() {
-        Hand playerHand = game.getPlayer();
-        while (!playerHand.isOver()) {
-            String command = getPlayerCommand();
-            if ("s".equals(command)) {
-                game.execute(new StandCommand(playerHand));
-            } else {
-                game.execute(new HitCommand(playerHand));
-                game.displayGameState();
-            }
-        }
+	public static void main(String[] args) {
+		Engine engine = new Engine();
+		engine.play();
+	}
 
-        Hand dealerHand = game.getDealer();
-        dealerHand.openAll();
+	void play() {
+		Hand playerHand = game.getPlayer();
+		while (!playerHand.isOver()) {
+			String command = getPlayerCommand();
+			if ("s".equals(command)) {
+				game.execute(new StandCommand(playerHand));
+			} else {
+				game.execute(new HitCommand(playerHand));
+				game.displayGameState();
+			}
+		}
 
-        if (!playerHand.isBust()) {
-            while (dealerHand.rank() < 17) {
-                game.execute(new HitCommand(dealerHand));
-            }
-            if (!dealerHand.isOver()) {
-                game.execute(new StandCommand(dealerHand));
-            }
-        }
+		Hand dealerHand = game.getDealer();
+		dealerHand.openAll();
 
-        System.out.println();
-        System.out.println("=== Final Result ===");
-        game.displayGameState();
+		if (!playerHand.isBust()) {
+			while (dealerHand.rank() < 17) {
+				game.execute(new HitCommand(dealerHand));
+			}
+			if (!dealerHand.isOver()) {
+				game.execute(new StandCommand(dealerHand));
+			}
+		}
 
-        if (playerHand.isBust()) {
-            System.out.println("You Busted.");
-        } else if (dealerHand.isBust()) {
-            System.out.println("Dealer went bust, Player wins! 💵");
-        } else {
-            int dealHandRank = dealerHand.rank();
-            int playerHandRank = playerHand.rank();
+		System.out.println();
+		System.out.println("=== Final Result ===");
+		game.displayGameState();
 
-            if (dealHandRank < playerHandRank) {
-                System.out.println("You beat the Dealer! 💵");
-            } else if (dealHandRank == playerHandRank) {
-                System.out.println("Push");
-            } else {
-                System.out.println("You lost to the Dealer. 💸");
-            }
-        }
-    }
+		if (playerHand.isBust()) {
+			System.out.println("You Busted.");
+		} else if (dealerHand.isBust()) {
+			System.out.println("Dealer went bust, Player wins! 💵");
+		} else {
+			int dealHandRank = dealerHand.rank();
+			int playerHandRank = playerHand.rank();
 
-    String getPlayerCommand() {
-        System.out.println("[H]it or [S]tand?");
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine().toLowerCase();
-    }
+			if (dealHandRank < playerHandRank) {
+				System.out.println("You beat the Dealer! 💵");
+			} else if (dealHandRank == playerHandRank) {
+				System.out.println("Push");
+			} else {
+				System.out.println("You lost to the Dealer. 💸");
+			}
+		}
+	}
 
-    public static void main(String[] args) {
-        Engine engine = new Engine();
-        engine.play();
-    }
+	String getPlayerCommand() {
+		System.out.println("[H]it or [S]tand?");
+		Scanner scanner = new Scanner(System.in);
+		return scanner.nextLine().toLowerCase();
+	}
 
 }

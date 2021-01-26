@@ -1,20 +1,20 @@
 package com.github.haibbi.blackjack;
 
 public enum Suit {
-    DIAMONDS("♦"),
-    CLUBS("♣"),
-    HEARTS("♥"),
-    SPADES("♠");
+	DIAMONDS("♦"),
+	CLUBS("♣"),
+	HEARTS("♥"),
+	SPADES("♠");
 
-    private final String representation;
+	private final String representation;
 
-    Suit(String representation) {
-        this.representation = representation;
-    }
+	Suit(String representation) {
+		this.representation = representation;
+	}
 
-    @Override
-    public String toString() {
-        return representation;
-    }
+	@Override
+	public String toString() {
+		return representation;
+	}
 
 }
