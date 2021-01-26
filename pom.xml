@@ -13,6 +13,10 @@
         <maven.compiler.source>15</maven.compiler.source>
         <maven.compiler.target>15</maven.compiler.target>
         <junit-jupiter-api.version>5.7.0</junit-jupiter-api.version>
+
+        <sonar.projectKey>haibbi_blackjack</sonar.projectKey>
+        <sonar.organization>haibbi</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
     <dependencies>
